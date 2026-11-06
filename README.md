@@ -33,4 +33,3 @@ Use a **fresh PRIVATE GitHub repository** named `andre-009/bodrock-web-2`. The e
 
 ## Out-of-scope
 Visual implementation, client portal data model, CMS selection, hosting subscription, DNS cutover, email migration, analytics services, authentication setup, database provisioning.
-

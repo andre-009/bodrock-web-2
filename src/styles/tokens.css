@@ -1,0 +1,45 @@
+/* BDL 1.0: canonical theme values. Do not duplicate in component CSS/TSX. */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --brand-primary: #0047ba;
+  --brand-accent: #00c2c7;
+  --background: #080d16;
+  --foreground: #f5f8ff;
+  --surface: #101827;
+  --surface-elevated: #162135;
+  --foreground-muted: #a8b6cb;
+  --border-subtle: #29374e;
+  --focus-ring: #00c2c7;
+  --accent-ink: #00c2c7;
+  --radius-control: 0.625rem;
+  --radius-surface: 1.25rem;
+  --container-max: 90rem;
+  --page-gutter: clamp(1rem, 4vw, 5rem);
+  --ease-ui: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 140ms;
+  --duration-normal: 260ms;
+  --duration-story: 560ms;
+  --font-brand-sans: "Geist", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-brand-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --background: #f8fafc;
+  --foreground: #101a2d;
+  --surface: #ffffff;
+  --surface-elevated: #eff4f9;
+  --foreground-muted: #4d5d73;
+  --border-subtle: #d4dde9;
+  --focus-ring: #0047ba;
+  --accent-ink: #006e75; /* accessible cyan usage on light background */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-story: 0ms;
+  }
+}

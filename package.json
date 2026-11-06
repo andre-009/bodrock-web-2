@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "description": "Bodrock Web Design 2.0 — governed app architecture foundation",
-  "engines": {"node": ">=24 <25"},
+  "engines": {
+    "node": ">=24 <25"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -28,5 +30,11 @@
     "eslint-config-next": "16.4.5",
     "tailwindcss": "4.3.4",
     "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "11.0.1"
+    }
   }
 }
+

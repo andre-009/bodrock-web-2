@@ -1,10 +1,30 @@
-// Infrastructure smoke-test route ONLY. Real homepage is a separate milestone.
+import type {ReactNode} from "react";
+import {Badge,Container,Grid,Link,Stack,Surface} from "../components/ui";
+import {SiteHeader,SiteFooter} from "../components/patterns";
+import {ThemeControl} from "../components/home/theme-control";
+import "./home.css";
+
+const nav=[{label:"Work",href:"#work"},{label:"Services",href:"#services"},{label:"Approach",href:"#approach"},{label:"Contact",href:"#contact"}];
+const projects=[
+  {number:"01",name:"Forethread",category:"Platform / Digital experience",description:"A focused digital presence for a procurement platform.",href:"https://www.bodrockwebdesign.com.ng/forethread/"},
+  {number:"02",name:"GeriPalMD",category:"Healthcare / Web design",description:"A clearer, more accessible home for virtual healthcare.",href:"https://www.bodrockwebdesign.com.ng/geripalmd/"},
+  {number:"03",name:"Bluewave Flying Services",category:"Aviation / Web design",description:"A digital platform for private aviation and client enquiries.",href:"https://www.bodrockwebdesign.com.ng/bluewave-flying-services-ltd/"},
+];
+const services=[{number:"01",title:"Web design & development",text:"Distinctive, responsive websites shaped around your goals and your audience."},{number:"02",title:"eCommerce",text:"Thoughtful online shopping experiences, from product discovery to checkout."},{number:"03",title:"Digital strategy",text:"Clarity on the message, journey and technology behind your next move."},{number:"04",title:"Mobile experiences",text:"App experiences designed to feel useful, intuitive and ready to grow."}];
+function SectionTitle({index,kicker,title,children}:{index:string;kicker:string;title:string;children?:ReactNode}) {return <div className="home-section-heading"><p className="home-overline"><span>{index}</span> / {kicker}</p><div><h2>{title}</h2>{children && <p>{children}</p>}</div></div>;}
 export default function Home() {
-  return (
-    <main className="mx-auto flex min-h-svh max-w-5xl flex-col justify-center gap-6 px-6 py-16">
-      <p className="font-mono text-xs uppercase tracking-widest text-accent-ink">Bodrock / Foundation</p>
-      <h1 className="text-4xl font-semibold tracking-tight sm:text-6xl">Bodrock Web Design 2.0</h1>
-      <p className="max-w-xl text-base leading-7 text-muted">Your Vision. Our Code. Architecture and design governance are ready for validation. This is not the final website.</p>
-    </main>
-  );
+ return <><a className="home-skip" href="#main">Skip to content</a><div id="top" className="home"><Container>
+   <div className="home-topbar"><SiteHeader brandHref="#top" brand={<span className="home-logo" role="img" aria-label="Bodrock Web Design" />} items={nav} /><ThemeControl /></div>
+   <main id="main">
+    <section className="home-hero" aria-labelledby="hero-title"><div className="home-hero-copy"><p className="home-overline"><span>Independent creative studio</span> / Design + technology</p><h1 id="hero-title">Your Vision.<br /><span>Our Code.</span></h1><p className="home-lead">We turn ideas into digital experiences that look considered, work beautifully and move your business forward.</p><div className="home-actions"><Link variant="primary" href="#contact">Start a project <span aria-hidden="true">↗</span></Link><Link variant="secondary" href="#work">Explore our work <span aria-hidden="true">↓</span></Link></div></div>
+      <div className="home-hero-art" aria-hidden="true"><div className="home-art-top"><span>BD / 01</span><span>DESIGN × TECHNOLOGY</span></div><div className="home-art-core"><div className="home-art-orbit"><span>YOUR<br />VISION.</span><strong>OUR<br />CODE.</strong></div></div><div className="home-art-bottom"><span>IDEAS INTO EXPERIENCE</span><span>↗</span></div></div>
+    </section>
+    <div className="home-ticker" aria-label="Bodrock capabilities"><span>Strategy</span><span aria-hidden="true">✦</span><span>Design</span><span aria-hidden="true">✦</span><span>Development</span><span aria-hidden="true">✦</span><span>Digital growth</span></div>
+    <section id="work" className="home-section"><SectionTitle index="01" kicker="Selected work" title="Built with purpose.">A selection of digital experiences created for people, brands and the work they do.</SectionTitle><Grid>{projects.map(project=><article className="home-project bdl-surface" key={project.number}><div className="home-project-visual" aria-hidden="true"><span>{project.number} / SELECTED WORK</span><strong>{project.name}</strong><span>VIEW PROJECT ↗</span></div><div className="home-project-details"><p className="home-meta">{project.category}</p><h3>{project.name}</h3><p>{project.description}</p><Link href={project.href}>Explore project <span aria-hidden="true">↗</span></Link></div></article>)}</Grid></section>
+    <section id="services" className="home-section"><SectionTitle index="02" kicker="What we do" title="From first thought to final detail.">Strategy, design and engineering come together to create experiences with intent.</SectionTitle><div className="home-service-list">{services.map(service=><div className="home-service" key={service.number}><span className="home-meta">{service.number}</span><h3>{service.title}</h3><p>{service.text}</p><span className="home-service-mark" aria-hidden="true">↗</span></div>)}</div></section>
+    <section id="approach" className="home-section"><SectionTitle index="03" kicker="Our approach" title="Thoughtful by design.">The best work starts with a clear understanding of what matters.</SectionTitle><Grid><Surface><Stack><Badge>01 / Discover</Badge><h3>Understand the challenge.</h3><p>We begin with your goals, your audience and the problem worth solving.</p></Stack></Surface><Surface><Stack><Badge>02 / Design</Badge><h3>Make the idea tangible.</h3><p>We shape a clear, cohesive experience around the people who will use it.</p></Stack></Surface><Surface><Stack><Badge>03 / Build</Badge><h3>Bring it to life.</h3><p>We turn the direction into a responsive, considered digital experience.</p></Stack></Surface></Grid></section>
+    <section id="contact" className="home-contact"><div><p className="home-overline"><span>04</span> / Start a conversation</p><h2>Have something<br /><span>in mind?</span></h2><p>Tell us about your idea. Let’s find the right way to bring it to life.</p><Link variant="primary" href="mailto:info@bodrockwebdesign.com.ng?subject=Start%20a%20project">Start a project <span aria-hidden="true">↗</span></Link></div><div className="home-contact-mark" aria-hidden="true">✳</div></section>
+   </main>
+   <SiteFooter brand="Bodrock Web Design · Your Vision. Our Code." items={[{label:"Email",href:"mailto:info@bodrockwebdesign.com.ng"},{label:"Back to top",href:"#top"}]} />
+  </Container></div></>;
 }

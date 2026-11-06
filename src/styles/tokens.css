@@ -58,3 +58,11 @@
   --on-primary: #f5f8ff;
 }
 
+
+/* Initial BDL 1.0 type scale for editorial sections. */
+:root {
+  --type-display: clamp(3rem, 7vw, 7rem);
+  --type-section: clamp(2rem, 4vw, 4rem);
+  --type-card: clamp(1.25rem, 2vw, 1.75rem);
+  --type-lead: clamp(1rem, 1.5vw, 1.25rem);
+}

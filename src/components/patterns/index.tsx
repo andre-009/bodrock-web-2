@@ -3,7 +3,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import type { ReactNode, TextareaHTMLAttributes, SelectHTMLAttributes } from "react";
 import { Button, Input, Label, Link } from "../ui";
 export type NavItem = { label: string; href: string; current?: boolean };
-export function SiteHeader({ brand, items, brandHref = "/" }: { brand: string; items: NavItem[]; brandHref?: string }) {
+export function SiteHeader({ brand, items, brandHref = "/" }: { brand: ReactNode; items: NavItem[]; brandHref?: string }) {
   const [open, setOpen] = useState(false); const id = useId(); const trigger = useRef<HTMLButtonElement>(null);
   return <header className="bdl-header"><Link href={brandHref} className="bdl-header__brand">{brand}</Link><nav aria-label="Main navigation" onKeyDown={(e)=>{if(e.key === "Escape" && open){setOpen(false);trigger.current?.focus();}}}><Button ref={trigger} variant="secondary" aria-expanded={open} aria-controls={id} onClick={()=>setOpen(!open)}>{open ? "Close menu" : "Menu"}</Button><ul id={id} className="bdl-nav-list" hidden={!open}>{items.map(item=><li key={item.href}><Link href={item.href} aria-current={item.current ? "page" : undefined} onClick={()=>setOpen(false)}>{item.label}</Link></li>)}</ul></nav></header>;
 }

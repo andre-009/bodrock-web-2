@@ -1,0 +1,23 @@
+/* BDL 1.0 reusable primitives; values derive from the canonical token sheet. */
+.bdl-container { width: min(100%, var(--container-max)); margin-inline: auto; padding-inline: var(--page-gutter); }
+.bdl-stack { display: flex; flex-direction: column; gap: var(--space-4); }
+.bdl-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-min)), 1fr)); }
+.bdl-surface { background: var(--surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-surface); padding: var(--space-6); color: var(--foreground); }
+.bdl-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: var(--control-height); padding: var(--space-3) var(--space-5); border: 1px solid transparent; border-radius: var(--radius-control); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; transition: background-color var(--duration-fast) var(--ease-ui), color var(--duration-fast) var(--ease-ui), border-color var(--duration-fast) var(--ease-ui); }
+.bdl-button--primary { background: var(--brand-primary); color: var(--on-primary); }
+.bdl-button--secondary { background: var(--surface-elevated); border-color: var(--border-subtle); color: var(--foreground); }
+.bdl-button--ghost { background: transparent; color: var(--foreground); }
+.bdl-button--primary:hover:not(:disabled) { filter: brightness(.9); }
+.bdl-button--secondary:hover:not(:disabled), .bdl-button--ghost:hover:not(:disabled) { background: var(--border-subtle); }
+.bdl-button:disabled { cursor: not-allowed; opacity: .55; }
+.bdl-link { color: var(--accent-ink); text-decoration: underline; text-underline-offset: .2em; }
+.bdl-link:hover { text-decoration-thickness: .15em; }
+.bdl-input { width: 100%; min-height: var(--control-height); padding: var(--space-3); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: var(--surface); color: var(--foreground); font: inherit; }
+.bdl-input[aria-invalid="true"] { border: 2px solid var(--focus-ring); }
+.bdl-input:disabled { opacity: .55; cursor: not-allowed; }
+.bdl-label { display: inline-block; color: var(--foreground); font-weight: 600; }
+.bdl-badge { display: inline-flex; align-items: center; padding: var(--space-1) var(--space-2); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); color: var(--foreground); font-size: var(--text-small); }
+.bdl-icon { display: inline-flex; flex: none; align-items: center; justify-content: center; line-height: 1; }
+.bdl-spinner { width: 1em; height: 1em; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: bdl-spin var(--duration-story) linear infinite; }
+@keyframes bdl-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .bdl-spinner { animation: none; border-right-color: currentColor; } }

@@ -7,7 +7,7 @@
 4. **Launch:** only after explicit approval and completion of the DNS/email and rollback gates below.
 
 ## GitHub repository
-New private `andre-009/bodrock-web-2`. `main` is production-candidate integration branch; `feat/*`, `fix/*`, `chore/*` via reviewed PR. Set GitHub ruleset/branch protection with required CI, no force push and PR review where account support permits. Enable secret scanning/Dependabot if available. Add CODEOWNERS and restrict who can approve high-impact changes. Never store tokens in repository or issue attachments.
+Repository `andre-009/bodrock-web-2`; the owner authorized changing visibility to public after foundation setup. `main` is production-candidate integration branch; `feat/*`, `fix/*`, `chore/*` via reviewed PR. Set GitHub ruleset/branch protection with required CI, no force push and PR review where account support permits. Enable secret scanning/Dependabot if available. Add CODEOWNERS and restrict who can approve high-impact changes. Never store tokens in repository or issue attachments.
 
 ## Critical DNS/email constraint
 Audit dated 2026-11-06: both Bodrock domains shared one document root; `mail` aliased the apex in the observed cPanel DNS zone; 129 records were visible, but actual authoritative DNS remains unverified. **Changing apex A/CNAME without fixing mail dependencies may break email.** Inventory authoritative DNS, MX/SPF/DKIM/DMARC, mail endpoints, TTL, certificates and a rollback procedure before DNS work. Do not move nameservers merely to move the website.

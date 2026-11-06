@@ -1,0 +1,17 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
+import ts from "typescript";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+const require = createRequire(import.meta.url);
+const source = readFileSync("src/components/ui/index.tsx", "utf8");
+const js = ts.transpileModule(source, { compilerOptions: { jsx: ts.JsxEmit.ReactJSX, module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
+const exports = {};
+new Function("exports", "require", js)(exports, require);
+const render = (Component, props, children) => renderToStaticMarkup(React.createElement(Component, props, children));
+test("button defaults safely and loading disables interaction", () => { assert.match(render(exports.Button, {}, "Save"), /type="button"/); const html=render(exports.Button, { loading:true }, "Saving"); assert.match(html, /disabled=""/); assert.match(html, /aria-busy="true"/); });
+test("form primitives retain labels, invalid state and descriptions", () => { assert.match(render(exports.Label, { htmlFor:"email" }, "Email"), /for="email"/); const html=render(exports.Input,{id:"email", "aria-invalid":true,"aria-describedby":"email-error"}); assert.match(html,/aria-invalid="true"/); assert.match(html,/aria-describedby="email-error"/); });
+test("icons are decorative by default or explicitly named", () => { assert.match(render(exports.Icon, {}, "*"), /aria-hidden="true"/); assert.match(render(exports.Icon, {label:"Search"}, "*"), /aria-label="Search"/); });
+test("links remain links and layout wrappers render children", () => { assert.match(render(exports.Link,{href:"/work"},"Work"), /href="\/work"/); for (const name of ["Badge","Surface","Container","Stack","Grid"]) assert.match(render(exports[name],{},"Content"),/Content/); });

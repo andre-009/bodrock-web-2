@@ -43,3 +43,18 @@
     --duration-story: 0ms;
   }
 }
+
+/* Initial BDL 1.0 primitive scale: 4px base and 8px rhythm. */
+:root {
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --control-height: 2.75rem;
+  --grid-min: 18rem;
+  --text-small: .875rem;
+  --on-primary: #f5f8ff;
+}
+
